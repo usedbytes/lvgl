@@ -87,6 +87,10 @@ else()
         # without micropython, build lvgl and examples libs normally
         add_library(lvgl STATIC ${SOURCES})
         add_library(lvgl_examples STATIC ${EXAMPLE_SOURCES})
+	target_compile_definitions(lvgl_examples PRIVATE
+		LV_LVGL_H_INCLUDE_SIMPLE=1
+	)
+	target_include_directories(lvgl_examples PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
     endif(MICROPY_DIR)
 
 endif()
